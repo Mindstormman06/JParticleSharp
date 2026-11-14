@@ -1,0 +1,3 @@
+[submodule "lib/TexSharp"]
+	path = lib/TexSharp
+	url = https://github.com/BladesawStudios/TexSharp.git
