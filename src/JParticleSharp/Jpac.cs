@@ -25,6 +25,14 @@ public sealed class JpaResource
 
     public JpaBlock? this[string magic] => Blocks.Find(b => b.Magic == magic);
 
+    public JpaDynamics? Dynamics => this["BEM1"] is { } b ? new JpaDynamics(b) : null;
+    public JpaBaseShape? BaseShape => this["BSP1"] is { } b ? new JpaBaseShape(b) : null;
+    public JpaExtraShape? ExtraShape => this["ESP1"] is { } b ? new JpaExtraShape(b) : null;
+    public JpaChildShape? ChildShape => this["SSP1"] is { } b ? new JpaChildShape(b) : null;
+    public JpaExtraTexture? ExtraTexture => this["ETX1"] is { } b ? new JpaExtraTexture(b) : null;
+    public IEnumerable<JpaField> Fields => Blocks.Where(b => b.Magic == "FLD1").Select(b => new JpaField(b));
+    public IEnumerable<JpaKeyFrames> KeyFrames => Blocks.Where(b => b.Magic == "KFA1").Select(b => new JpaKeyFrames(b));
+
     /// <summary>The indices into the container's textures that this resource uses (from TDB1).</summary>
     public IReadOnlyList<ushort> TextureIndices
     {
